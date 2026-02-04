@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Invitación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Overlay de desenfoque -->
+    <div class="blur-overlay" id="blurOverlay"></div>
+
+    <div class="background-decoration" id="bgDecoration">
+        <img src="cerpentina.png" alt="Serpentina decorativa" class="ribbon ribbon-1">
+        <img src="cerpentina.png" alt="Serpentina decorativa" class="ribbon ribbon-2">
+        <img src="Rosa%20esquina%20inferior%20derecha.png" alt="Rosa decorativa" class="rose-decoration main-view">
+    </div>
+
+    <div class="container">
+        <!-- Título superior -->
+        <h1 class="title">Sorpréndela con<br>un detalle especial</h1>
+
+        <!-- Badge de fecha -->
+        <div class="date-badge">
+            <span class="date">9 DE FEBRERO</span>
+            <span class="subtitle">para la<br>mujer más<br>hermosa</span>
+        </div>
+
+        <!-- Carta animada -->
+        <div class="envelope-container" id="envelope">
+            <div class="envelope">
+                <!-- Solapa trasera -->
+                <div class="envelope-back"></div>
+
+                <!-- Carta interior -->
+                <div class="letter" id="letter">
+                    <div class="letter-content">
+                        <div class="sparkles">✦</div>
+                        <h2>GIFT CARD</h2>
+                        <p class="letter-subtitle">para alguien especial</p>
+                    </div>
+                </div>
+
+                <!-- Cuerpo del sobre -->
+                <div class="envelope-body"></div>
+
+                <!-- Solapa frontal (la que se abre) -->
+                <div class="envelope-flap" id="flap"></div>
+
+                <!-- Sello de corazón -->
+                <div class="heart-seal" id="heartSeal">💕</div>
+            </div>
+
+            <!-- Aviso de presionar -->
+            <div class="click-hint" id="clickHint">
+                <span class="pulse-icon">👆</span>
+                <span>Presione para abrir</span>
+            </div>
+        </div>
+
+        <!-- Logo inferior -->
+        <div class="logo" id="mainLogo">
+            <span class="logo-flower">🌸</span>
+            <span class="logo-text">KARMEL STETIC</span>
+        </div>
+    </div>
+
+    <!-- Carta expandida (aparece cuando se abre) -->
+    <div class="expanded-letter" id="expandedLetter">
+        <div class="expanded-content">
+            <!-- Cinta decorativa superior derecha -->
+            <img src="cerpentina.png" alt="Serpentina" class="top-ribbon">
+
+            <!-- Mensaje superior -->
+            <div class="love-message">
+                <p>Para la mujer que amo, con todo mi corazón.</p>
+                <p>Que disfrutes este regalo tanto como<br>yo disfruto amarte .</p>
+            </div>
+
+            <!-- Contenedor central de la tarjeta -->
+            <div class="card-wrapper">
+                <div class="gift-card-box">
+                    <div class="card-header">
+                        <span class="script-title">para ti</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="detail-row">
+                            <span class="label">VALIDO POR:</span>
+                            <span class="value">HIDROLIPOCLACIA</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">DE:</span>
+                            <span class="value">DANIEL ROMERO</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">PARA:</span>
+                            <span class="value">CAROLINA SANCHEZ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cintas decorativas alrededor de la tarjeta -->
+                <img src="cerpentina.png" alt="Serpentina" class="ribbon-curl-left">
+                <img src="cerpentina.png" alt="Serpentina" class="ribbon-curl-top">
+            </div>
+
+            <!-- Flor/Roseta inferior derecha -->
+            <img src="Rosa%20esquina%20inferior%20derecha.png" alt="Rosa decorativa"
+                class="rose-decoration expanded-view">
+
+            <!-- Contador Regresivo -->
+            <div class="countdown-container">
+                <h3 class="countdown-title">Faltan:</h3>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">00</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reproductor de Música -->
+            <div class="music-player">
+                <div class="player-header">
+                    <span class="music-icon">🎵</span>
+                    <span class="song-title">Vicio - Camilo Séptimo</span>
+                </div>
+                <audio id="audioPlayer" src="Vicio%20(letra)%20-%20Camilo%20S%C3%A9ptimo.mp3"></audio>
+                <div class="player-controls">
+                    <button class="control-btn" id="playPauseBtn">
+                        <span class="play-icon">▶</span>
+                        <span class="pause-icon" style="display: none;">⏸</span>
+                    </button>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+                    </div>
+                    <button class="control-btn volume-btn" id="volumeBtn">
+                        <span class="volume-icon">🔊</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fecha y hora -->
+            <div class="datetime-info">
+                <p class="date-info">FECHA:07/02/2026</p>
+                <p class="time-info">HORA: 9:00AM</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="expanded-logo">
+                <div class="logo-wrapper">
+                    <span class="logo-flower">🌸</span>
+                </div>
+                <span class="logo-title">KARMEL STETIC</span>
+                <p class="slogan">REGALATE ESTE MOMENTO PARA TI</p>
+            </div>
+
+            <!-- Botón cerrar (discreto) -->
+            <button class="close-btn" id="closeBtn">✕</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
