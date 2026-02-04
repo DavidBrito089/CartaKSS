@@ -1092,11 +1092,12 @@ body {
     bottom: -45%;
     right: -30%;
     width: 400px;
+
     max-width: 40vw;
     height: auto;
     opacity: 0.95;
     animation: floatFlower 10s ease-in-out infinite;
-    z-index: 1;
+    z-index: -20;
     /* Detrás de la carta */
 }
 
