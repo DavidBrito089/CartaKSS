@@ -20,18 +20,11 @@
     <div class="background-decoration" id="bgDecoration">
         <img src="cerpentina.png" alt="Serpentina decorativa" class="ribbon ribbon-1">
         <img src="cerpentina.png" alt="Serpentina decorativa" class="ribbon ribbon-2">
-        <img src="Rosa%20esquina%20inferior%20derecha.png" alt="Rosa decorativa" class="rose-decoration main-view">
     </div>
 
     <div class="container">
         <!-- Título superior -->
         <h1 class="title">Sorpréndela con<br>un detalle especial</h1>
-
-        <!-- Badge de fecha -->
-        <div class="date-badge">
-            <span class="date">9 DE FEBRERO</span>
-            <span class="subtitle">para la<br>mujer más<br>hermosa</span>
-        </div>
 
         <!-- Carta animada -->
         <div class="envelope-container" id="envelope">
@@ -51,17 +44,30 @@
                 <!-- Cuerpo del sobre -->
                 <div class="envelope-body"></div>
 
-                <!-- Solapa frontal (la que se abre) -->
-                <div class="envelope-flap" id="flap"></div>
+                <!-- Solapa trasera (se abre segunda) -->
+                <div class="envelope-flap envelope-flap-back" id="flapBack"></div>
+
+                <!-- Solapa frontal (se abre primero) -->
+                <div class="envelope-flap envelope-flap-front" id="flapFront"></div>
 
                 <!-- Sello de corazón -->
                 <div class="heart-seal" id="heartSeal">💕</div>
+
+                <!-- Rosa decorativa detrás de la carta -->
+                <img src="Rosa%20esquina%20inferior%20derecha.png" alt="Rosa decorativa"
+                    class="rose-decoration main-view">
             </div>
 
             <!-- Aviso de presionar -->
             <div class="click-hint" id="clickHint">
                 <span class="pulse-icon">👆</span>
                 <span>Presione para abrir</span>
+            </div>
+
+            <!-- Badge de fecha -->
+            <div class="date-badge">
+                <span class="date">9 DE FEBRERO</span>
+                <span class="subtitle">para la<br>mujer más<br>hermosa</span>
             </div>
         </div>
 

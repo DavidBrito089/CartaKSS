@@ -122,15 +122,58 @@ body {
     margin-top: 5px;
 }
 
+/* Badge de fecha */
+.date-badge {
+    position: absolute;
+    top: -20px;
+    left: -40px;
+    background: linear-gradient(135deg, #5e0e1a 0%, #7a1323 100%);
+    color: #e8c49e;
+    padding: 20px;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(94, 14, 26, 0.4);
+    z-index: 15;
+    transform: rotate(-8deg);
+    animation: pulse 3s ease-in-out infinite;
+    clip-path: polygon(50% 0%, 61% 5%, 70% 2%, 79% 7%, 85% 3%, 93% 9%, 97% 5%, 100% 15%,
+            100% 25%, 95% 35%, 100% 45%, 100% 55%, 95% 65%, 100% 75%, 100% 85%,
+            97% 95%, 93% 91%, 85% 97%, 79% 93%, 70% 98%, 61% 95%, 50% 100%,
+            39% 95%, 30% 98%, 21% 93%, 15% 97%, 7% 91%, 3% 95%, 0% 85%,
+            0% 75%, 5% 65%, 0% 55%, 0% 45%, 5% 35%, 0% 25%, 0% 15%,
+            3% 5%, 7% 9%, 15% 3%, 21% 7%, 30% 2%, 39% 5%);
+}
+
+.date-badge .date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.date-badge .subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
 @keyframes pulse {
 
     0%,
     100% {
-        transform: scale(1);
+        transform: rotate(-8deg) scale(1);
     }
 
     50% {
-        transform: scale(1.05);
+        transform: rotate(-8deg) scale(1.05);
     }
 }
 
@@ -149,11 +192,12 @@ body {
     height: 240px;
     position: relative;
     transform-style: preserve-3d;
+    transform: rotate(-3deg);
     transition: transform 0.3s ease;
 }
 
 .envelope:hover {
-    transform: translateY(-5px);
+    transform: rotate(-3deg) translateY(-5px);
 }
 
 /* Partes del sobre */
@@ -164,6 +208,8 @@ body {
     background: linear-gradient(180deg, #ffeef2 0%, #fbdce6 100%);
     border-radius: 12px;
     box-shadow: 0 20px 50px rgba(109, 30, 49, 0.15);
+    transform: translateZ(0);
+    /* Ancla en el plano Z */
 }
 
 .envelope-body {
@@ -176,6 +222,8 @@ body {
     z-index: 3;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
     clip-path: polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%);
+    transform: translateZ(0);
+    /* Ancla en el plano Z */
 }
 
 /* Ajuste visual para el recorte del cuerpo del sobre */
@@ -196,15 +244,37 @@ body {
     width: 100%;
     height: 60%;
     top: 0;
-    background: linear-gradient(180deg, #fcebec 0%, #fae1e6 100%);
     clip-path: polygon(0 0, 50% 85%, 100% 0);
     transform-origin: top;
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 5;
+    transition: transform 0.6s ease-out;
     filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.05));
 }
 
-.envelope-flap::after {
+/* Solapa trasera (más oscura, z-index menor) */
+.envelope-flap-back {
+    background: linear-gradient(180deg, #f5dee2 0%, #f0d5db 100%);
+    z-index: 4;
+}
+
+.envelope-flap-back::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+    clip-path: polygon(0 0, 50% 85%, 100% 0);
+    pointer-events: none;
+}
+
+/* Solapa frontal (más clara, z-index mayor) */
+.envelope-flap-front {
+    background: linear-gradient(180deg, #fcebec 0%, #fae1e6 100%);
+    z-index: 5;
+}
+
+.envelope-flap-front::after {
     content: '';
     position: absolute;
     left: 0;
@@ -225,7 +295,8 @@ body {
     width: 40px;
     height: 40px;
     z-index: 6;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease 0.6s, transform 0.3s ease 0.6s;
+    /* Delay para que aparezcan después del cierre */
 }
 
 .heart-seal::before,
@@ -327,9 +398,9 @@ body {
     top: 10%;
     background: linear-gradient(135deg, #ffffff 0%, #fffaf8 100%);
     border-radius: 6px;
-    z-index: 2;
+    z-index: 0;
     transform: translateY(0);
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+    transition: transform 1s cubic-bezier(0.68, 0, 0, 1.55) 1s;
     box-shadow:
         0 5px 20px rgba(0, 0, 0, 0.1),
         inset 0 0 30px rgba(212, 165, 165, 0.1);
@@ -368,20 +439,31 @@ body {
 }
 
 /* Estado abierto */
-.envelope-container.opened .envelope-flap {
+/* Solapa frontal se abre primero */
+.envelope-container.opened .envelope-flap-front {
     transform: rotateX(180deg);
+    transition-delay: 0s;
+    /* Comienza inmediatamente */
+}
+
+/* Solapa trasera se abre después */
+.envelope-container.opened .envelope-flap-back {
+    transform: rotateX(180deg);
+    transition-delay: 0.1s;
+    /* Comienza 400ms después */
 }
 
 .envelope-container.opened .letter {
     transform: translateY(-180px) translateZ(50px);
-    z-index: 10;
-    transition-delay: 0.5s;
+    transition-delay: 0.1s;
     animation: letterPop 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.4s;
 }
 
 .envelope-container.opened .heart-seal {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
+    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+    /* Sin delay al abrir */
 }
 
 .envelope-container.opened .click-hint {
@@ -1007,13 +1089,15 @@ body {
 }
 
 .rose-decoration.main-view {
-    bottom: -5%;
-    right: -5%;
-    width: 300px;
+    bottom: -45%;
+    right: -30%;
+    width: 400px;
     max-width: 40vw;
     height: auto;
     opacity: 0.95;
     animation: floatFlower 10s ease-in-out infinite;
+    z-index: 1;
+    /* Detrás de la carta */
 }
 
 /* Ajustes Responsive */
