@@ -1110,10 +1110,10 @@ body {
 }
 
 .rose-decoration.expanded-view {
-    bottom: 15%;
-    right: -35%;
-    width: 650px;
-    max-width: 70vw;
+    bottom: 25%;
+    right: -20%;
+    width: 250px;
+    max-width: 45vw;
     height: auto;
     opacity: 0;
     animation: fadeInRotate 1.2s ease-out forwards 1.2s;
@@ -1222,13 +1222,6 @@ body {
         max-width: 85vw !important;
         bottom: -40%;
         right: -35%;
-    }
-
-    .rose-decoration.expanded-view {
-        width: 650px !important;
-        max-width: 85vw !important;
-        bottom: 10%;
-        right: -30%;
     }
 }
 
